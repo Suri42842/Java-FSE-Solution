@@ -1,0 +1,431 @@
+/* ==========================================================================
+   Main Stylesheet for Local Community Event Portal
+   ========================================================================== */
+
+/* ==========================================================================
+   Reset and Base Styles
+   ========================================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f5f5f5;
+    background-image: url('Module/Module 1/HTML 5/LocalCommunityEventPortal/image/background.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Open Sans', sans-serif;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+}
+
+h2 {
+    font-size: 2rem;
+    color: #2c3e50;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-align: center;
+}
+
+h3, p {
+    color: #2c3e50;
+    font-weight: 600;
+}
+
+/* ==========================================================================
+   Navigation Styles
+   ========================================================================== */
+/* Main navigation container */
+#mainNav {
+    background: linear-gradient(to right, #2c3e50, #3498db);
+    padding: 1rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+/* Navigation links */
+#mainNav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
+
+#mainNav a {
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+#mainNav a:link {
+    color: white;
+}
+
+#mainNav a:visited {
+    color: #e0e0e0;
+}
+
+#mainNav a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+#mainNav a:active {
+    transform: scale(0.95);
+}
+
+/* ==========================================================================
+   Welcome Banner Styles
+   ========================================================================== */
+/* Welcome section container */
+.banner {
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('Module/Module 1/HTML 5/LocalCommunityEventPortal/image/banner-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    padding: 4rem 2rem;
+    text-align: center;
+}
+
+/* Welcome heading */
+.banner h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.highlight {
+    color: #ff6b6b;
+    font-weight: bold;
+}
+
+/* ==========================================================================
+   Event Gallery Styles
+   ========================================================================== */
+/* Event grid styles */
+.event-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, auto);
+    gap: 2rem;
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Event card styles */
+.eventCard {
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #e0e0e0;
+    padding: 0.5rem;
+    margin: 0.5rem;
+}
+
+.eventCard:hover {
+    transform: translateY(-5px);
+}
+
+.event-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.eventCard h3 {
+    padding: 1rem;
+    color: #2c3e50;
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.event-description {
+    padding: 0 1rem 1rem;
+    color: #666;
+    margin: 0;
+    flex-grow: 1;
+    font-style: italic;
+    line-height: 1.4;
+}
+
+/* Update responsive design for the grid */
+@media (max-width: 768px) {
+    .event-grid {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(3, auto);
+        gap: 1rem;
+        padding: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .event-grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(6, auto);
+    }
+}
+
+/* ==========================================================================
+   Form Styles
+   ========================================================================== */
+/* Registration form container */
+.registration-form {
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Form group spacing */
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+/* Form labels */
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+/* Form inputs */
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    outline: 2px solid #3498db;
+    border-color: transparent;
+}
+
+/* Submit button */
+.cta-button {
+    background: linear-gradient(to right, #3498db, #2980b9);
+    color: white;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: transform 0.3s ease;
+}
+
+.cta-button:hover {
+    transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   Video Section Styles
+   ========================================================================== */
+/* Video container */
+.video-container {
+    margin: 2rem 0;
+    text-align: center;
+}
+
+/* Video controls */
+.video-controls {
+    margin-top: 1rem;
+}
+
+.video-controls button {
+    background-color: #6c757d;
+    color: white;
+    padding: 0.5rem 1rem;
+    margin: 0 0.5rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.video-controls button:hover {
+    background-color: #5a6268;
+}
+
+/* ==========================================================================
+   Location Section Styles
+   ========================================================================== */
+/* Location section container */
+#location {
+    padding: 2rem;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    margin: 2rem 0;
+}
+
+/* Nearby events list */
+#eventsList {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+/* ==========================================================================
+   Footer Styles
+   ========================================================================== */
+/* Footer container */
+footer {
+    background: linear-gradient(to right, #2c3e50, #3498db);
+    color: white;
+    text-align: center;
+    padding: 2rem;
+    margin-top: 2rem;
+}
+
+/* ==========================================================================
+   Utility Classes
+   ========================================================================== */
+/* Special heading style */
+.special-heading {
+    font-size: 2em;
+    text-transform: uppercase;
+    color: #2c3e50;
+    margin-bottom: 1.5rem;
+}
+
+/* Event description text */
+.event-description {
+    font-style: italic;
+    color: #666;
+    margin-top: 0.5rem;
+}
+
+/* Responsive design breakpoints */
+@media (max-width: 768px) {
+    #mainNav ul {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+    
+    .banner h1 {
+        font-size: 2rem;
+    }
+    
+    .news-content {
+        column-count: 1;
+    }
+    
+    .registration-form {
+        padding: 1rem;
+    }
+    
+    .admin-table {
+        display: block;
+        overflow-x: auto;
+    }
+}
+
+/* News Section Styles */
+.news-section {
+    padding: 2rem;
+    background-color: white;
+    margin: 2rem 0;
+}
+
+.news-content {
+    column-count: 2;
+    column-gap: 30px;
+    column-rule: 1px solid #ddd;
+    padding: 1rem;
+}
+
+/* Admin Table Styles */
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem 0;
+    background: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.admin-table th,
+.admin-table td {
+    padding: 1rem;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+.admin-table th {
+    background: linear-gradient(to right, #2c3e50, #3498db);
+    color: white;
+}
+
+.admin-table tr:nth-child(even) {
+    background-color: #f8f9fa;
+}
+
+.admin-table tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Footer Styles */
+footer {
+    background: linear-gradient(to right, #2c3e50, #3498db);
+    color: white;
+    text-align: center;
+    padding: 2rem;
+    margin-top: 2rem;
+}
+
+/* ==========================================================================
+   Utility Classes
+   ========================================================================== */
+/* Special heading style */
+.section-title {
+    text-align: center;
+    margin: 2rem 0;
+    color: #2c3e50;
+    position: relative;
+}
+
+.section-title::after {
+    content: '';
+    display: block;
+    width: 50px;
+    height: 3px;
+    background: #3498db;
+    margin: 0.5rem auto;
+}
+
+/* ==========================================================================
+   Responsive Design
+   ========================================================================== */
+@media (max-width: 480px) {
+    .banner h1 {
+        font-size: 1.5rem;
+    }
+
+    .section-title {
+        font-size: 1.5rem;
+    }
+} 

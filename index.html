@@ -4,160 +4,221 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Local Community Event Portal</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <!-- External Stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- Internal Styles -->
     <style>
         body {
-            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            background-image: url('Module/Module 1/HTML 5/LocalCommunityEventPortal/image/background.jpg');
+            background-size: cover;
+            background-attachment: fixed;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        /* Navigation Styles */
+        #mainNav {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 15px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        #mainNav ul {
+            list-style: none;
+            padding: 0;
             margin: 0;
-            padding: 20px;
-            line-height: 1.6;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
         }
 
-        nav {
-            background: #333;
-            padding: 10px;
-            margin: -20px -20px 20px -20px;
-        }
-
-        nav a {
-            color: white;
+        #mainNav a {
             text-decoration: none;
-            margin-right: 15px;
+            color: #333;
+            font-weight: 600;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
         }
 
-        #welcomeBanner {
-            background: #007bff;
+        #mainNav a:hover {
+            background: #4CAF50;
             color: white;
-            padding: 10px;
-            text-align: center;
-            margin: -20px -20px 20px -20px;
         }
 
-        .event-gallery {
-            width: 100%;
-            margin: 20px 0;
-        }
-
-        .event-gallery td {
-            padding: 10px;
-            text-align: center;
-        }
-
-        .event-gallery img {
-            max-width: 100%;
-            border: 1px solid #ddd;
-        }
-
-        .registration-form {
-            max-width: 500px;
-            margin: 20px auto;
-            padding: 20px;
-            border: 1px solid #ddd;
-        }
-
+        /* Form Styles */
         .form-group {
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
 
         .form-group label {
             display: block;
             margin-bottom: 5px;
+            color: #333;
+            font-weight: 600;
         }
 
         .form-group input,
         .form-group select,
         .form-group textarea {
             width: 100%;
-            padding: 5px;
-            border: 1px solid #ddd;
-        }
-
-        .video-container {
-            max-width: 600px;
-            margin: 20px auto;
-        }
-
-        footer {
-            background: #333;
-            color: white;
-            text-align: center;
             padding: 10px;
-            margin: 20px -20px -20px -20px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
         }
 
-        button {
-            padding: 5px 15px;
-            background: #007bff;
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: #4CAF50;
+            outline: none;
+        }
+
+        .form-group input:invalid,
+        .form-group select:invalid {
+            border-color: #f44336;
+        }
+
+        /* Table Styles */
+        .admin-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .admin-table th,
+        .admin-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .admin-table th {
+            background: #4CAF50;
             color: white;
+            font-weight: 600;
+        }
+
+        .admin-table tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+
+        .admin-table tr:hover {
+            background: #f5f5f5;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            #mainNav ul {
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+            }
+
+            .event-card {
+                margin: 10px 0;
+            }
+
+            .admin-table {
+                display: block;
+                overflow-x: auto;
+            }
+
+            .form-group input,
+            .form-group select,
+            .form-group textarea {
+                font-size: 16px; /* Prevents zoom on mobile */
+            }
+        }
+
+        /* Button Styles */
+        button {
+            padding: 12px 24px;
             border: none;
+            border-radius: 5px;
             cursor: pointer;
+            font-size: 1.1em;
+            transition: all 0.3s ease;
         }
 
         button:hover {
-            background: #0056b3;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
         }
-        .event-image {
-    border: 2px solid #333;
-    border-radius: 6px;
-    padding: 2px;
-}
+
+        button:active {
+            transform: translateY(0);
+        }
     </style>
 </head>
 <body>
     <!-- Navigation Section -->
-    <nav>
-        <a href="#home">Home</a>
-        <a href="#events">Events</a>
-        <a href="#contact">Contact</a>
-        <a href="help.html" target="_blank">Help</a>
+    <nav id="mainNav">
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#events">Events</a></li>
+            <li><a href="#news">News</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="help.html" target="_blank">Help</a></li>
+        </ul>
     </nav>
 
     <!-- Welcome Banner Section -->
-    <div id="welcomeBanner">
-        <h1>Welcome to Our Community Portal</h1>
-        <p>Join us for exciting local events! <span style="color: red; font-weight: bold;">Special offer: First event free!</span></p>
+    <div id="mainHeader" class="banner" style="background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%); padding: 40px 20px; text-align: center; color: white; margin-bottom: 30px;">
+        <h1 style="color: #ffffff; margin-bottom: 15px; font-size: 2.5em; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);">Welcome to Our Community Portal</h1>
+        <p style="font-size: 1.2em; margin: 0;">Join us for exciting local events! <span class="highlight" style="background-color: rgba(255,255,255,0.2); padding: 5px 10px; border-radius: 5px;">Special offer: First event free!</span></p>
     </div>
 
     <!-- Main Content Section -->
     <main>
-        <!-- Events Section -->
-        <section id="events">
-            <h2>Upcoming Events</h2>
-            <table class="event-gallery">
-                <tr>
-                    <td>
-                        <img src="Module/Module 1/HTML 5/LocalCommunityEventPortal/image/music fest.jpg" alt="Music Fest" title="Music Fest" class="event-image" ondblclick="enlargeImage(this)">
-                        <p>Music Festival</p>
-                    </td>
-                    <td>
-                        <img src="Module/Module 1/HTML 5/LocalCommunityEventPortal/image/food fair.jpg" alt="Food Fair" title="Food Fair" class="event-image" ondblclick="enlargeImage(this)">
-                        <p>Food Fair</p>
-                    </td>
-                    <td>
-                        <img src="Module/Module 1/HTML 5/LocalCommunityEventPortal/image/art show.jpg" alt="Art Show" title="Art Show" class="event-image" ondblclick="enlargeImage(this)">
-                        <p>Art Show</p>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <img src="Module/Module 1/HTML 5/LocalCommunityEventPortal/image/yoga day.jpg" alt="Yoga Day" title="Yoga Day" class="event-image" ondblclick="enlargeImage(this)">
-                        <p>Yoga Day</p>
-                    </td>
-                    <td>
-                        <img src="Module/Module 1/HTML 5/LocalCommunityEventPortal/image/culturla fest.jpg" alt="Cultural Fest" title="Cultural Fest" class="event-image" ondblclick="enlargeImage(this)">
-                        <p>Cultural Festival</p>
-                    </td>
-                    <td>
-                        <img src="Module/Module 1/HTML 5/LocalCommunityEventPortal/image/marathon.jpg" alt="Marathon" title="Marathon" class="event-image" ondblclick="enlargeImage(this)">
-                        <p>Marathon</p>
-                    </td>
-                </tr>
-            </table>
+        <section id="events" style="padding: 20px; background: rgba(255, 255, 255, 0.9); border-radius: 10px; margin: 20px auto; max-width: 1200px;">
+            <h2 style="text-align: center; color: #333; margin-bottom: 30px; font-size: 2em;">Upcoming Events</h2>
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; padding: 20px;">
+                <div class="event-card" style="text-align: center; background: white; padding: 15px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); transition: transform 0.3s ease;">
+                    <img src="Module/Module 1/HTML 5/LocalCommunityEventPortal/image/music fest.jpg" alt="Music Fest" title="Music Fest" class="event-image" ondblclick="enlargeImage(this)" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; cursor: pointer; transition: all 0.3s ease;">
+                    <p style="margin-top: 10px; font-weight: bold; color: #333;">Music Festival</p>
+                </div>
+                <div class="event-card" style="text-align: center; background: white; padding: 15px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); transition: transform 0.3s ease;">
+                    <img src="Module/Module 1/HTML 5/LocalCommunityEventPortal/image/food fair.jpg" alt="Food Fair" title="Food Fair" class="event-image" ondblclick="enlargeImage(this)" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; cursor: pointer; transition: all 0.3s ease;">
+                    <p style="margin-top: 10px; font-weight: bold; color: #333;">Food Fair</p>
+                </div>
+                <div class="event-card" style="text-align: center; background: white; padding: 15px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); transition: transform 0.3s ease;">
+                    <img src="Module/Module 1/HTML 5/LocalCommunityEventPortal/image/art show.jpg" alt="Art Show" title="Art Show" class="event-image" ondblclick="enlargeImage(this)" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; cursor: pointer; transition: all 0.3s ease;">
+                    <p style="margin-top: 10px; font-weight: bold; color: #333;">Art Show</p>
+                </div>
+                <div class="event-card" style="text-align: center; background: white; padding: 15px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); transition: transform 0.3s ease;">
+                    <img src="Module/Module 1/HTML 5/LocalCommunityEventPortal/image/yoga day.jpg" alt="Yoga Day" title="Yoga Day" class="event-image" ondblclick="enlargeImage(this)" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; cursor: pointer; transition: all 0.3s ease;">
+                    <p style="margin-top: 10px; font-weight: bold; color: #333;">Yoga Day</p>
+                </div>
+                <div class="event-card" style="text-align: center; background: white; padding: 15px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); transition: transform 0.3s ease;">
+                    <img src="Module/Module 1/HTML 5/LocalCommunityEventPortal/image/culturla fest.jpg" alt="Cultural Fest" title="Cultural Fest" class="event-image" ondblclick="enlargeImage(this)" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; cursor: pointer; transition: all 0.3s ease;">
+                    <p style="margin-top: 10px; font-weight: bold; color: #333;">Cultural Festival</p>
+                </div>
+                <div class="event-card" style="text-align: center; background: white; padding: 15px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); transition: transform 0.3s ease;">
+                    <img src="Module/Module 1/HTML 5/LocalCommunityEventPortal/image/marathon.jpg" alt="Marathon" title="Marathon" class="event-image" ondblclick="enlargeImage(this)" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; cursor: pointer; transition: all 0.3s ease;">
+                    <p style="margin-top: 10px; font-weight: bold; color: #333;">Marathon</p>
+                </div>
+            </div>
         </section>
 
-        <!-- Registration Form Section -->
+        <section id="news" class="news-section">
+            <h2 class="section-title">Community News</h2>
+            <article class="news-content">
+                <h3>Latest Updates</h3>
+                <p>Welcome to our community news section! We're excited to announce several upcoming events and initiatives that will bring our community together. From cultural celebrations to educational workshops, there's something for everyone to enjoy.</p>
+                <p>Our community center has been renovated and is now ready to host larger events. We've added new facilities including a modern kitchen, expanded meeting rooms, and improved accessibility features. Come visit us and see the changes for yourself!</p>
+            </article>
+        </section>
+
         <section id="registration">
-            <h2>Event Registration</h2>
-            <form class="registration-form" id="eventForm" onsubmit="return handleSubmit(event)">
+            <h2 class="section-title">Event Registration</h2>
+            <form class="registration-form" id="eventForm" onsubmit="return validateForm(event)">
                 <div class="form-group">
                     <label for="name">Name:</label>
                     <input type="text" id="name" name="name" required autofocus placeholder="Enter your full name">
@@ -191,24 +252,50 @@
                     <textarea id="message" name="message" onkeyup="countCharacters(this)" placeholder="Any special requirements?"></textarea>
                     <p>Character count: <span id="charCount">0</span></p>
                 </div>
-                <button type="submit" onclick="showConfirmation()">Register</button>
+                <button type="submit">Register</button>
                 <output id="confirmation"></output>
             </form>
         </section>
 
-        <!-- Video Section -->
+        <!-- Admin Table Section -->
+        <section id="admin">
+            <h2 class="section-title">Event Management</h2>
+            <table class="admin-table">
+                <thead>
+                    <tr>
+                        <th>Event Name</th>
+                        <th>Date</th>
+                        <th>Location</th>
+                        <th>Capacity</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Music Festival</td>
+                        <td>2024-04-15</td>
+                        <td>City Park</td>
+                        <td>1000</td>
+                    </tr>
+                    <tr>
+                        <td>Food Fair</td>
+                        <td>2024-04-20</td>
+                        <td>Downtown Square</td>
+                        <td>500</td>
+                    </tr>
+                    <tr>
+                        <td>Art Show</td>
+                        <td>2024-04-25</td>
+                        <td>Community Center</td>
+                        <td>300</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
         <section id="video">
             <h2>Event Promo</h2>
             <div class="video-container">
-                <iframe 
-                    width="100%" 
-                    height="400" 
-                    src="https://www.youtube.com/embed/jLRXicRdNCQ?enablejsapi=1" 
-                    title="Event Promo Video"
-                    frameborder="0" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                    allowfullscreen>
-                </iframe>
+                <iframe id="youtubePlayer" width="560" height="315" src="https://www.youtube.com/embed/7fGDMTp0v6s?enablejsapi=1" title="Event Promo Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 <p id="videoStatus"></p>
                 <div class="video-controls">
                     <button onclick="playVideo()">Play</button>
@@ -218,21 +305,23 @@
             </div>
         </section>
 
-        <!-- Geolocation Section -->
-        <section id="location">
-            <h2>Find Nearby Events</h2>
-            <button onclick="findNearbyEvents()">Find Nearby Events</button>
-            <p id="locationStatus"></p>
+        <section id="location" style="padding: 20px; background: rgba(255, 255, 255, 0.9); border-radius: 10px; margin: 20px auto; max-width: 1200px;">
+            <h2 style="text-align: center; color: #333; margin-bottom: 30px; font-size: 2em;">Find Nearby Events</h2>
+            <div style="text-align: center; margin-bottom: 20px;">
+                <button onclick="findNearbyEvents()" style="padding: 12px 24px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 1.1em; transition: background-color 0.3s ease;">Find Nearby Events</button>
+            </div>
+            <p id="locationStatus" style="text-align: center; color: #666; margin: 15px 0;"></p>
             <div id="nearbyEvents" style="margin-top: 20px;">
-                <h3>Events Near You</h3>
-                <div id="eventsList"></div>
+                <h3 style="text-align: center; color: #333; margin-bottom: 20px;">Events Near You</h3>
+                <div id="eventsList" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; padding: 20px;"></div>
             </div>
         </section>
 
-        <!-- Preferences Section -->
-        <section id="preferences">
-            <h2>Your Preferences</h2>
-            <button onclick="clearPreferences()">Clear Preferences</button>
+        <section id="preferences" style="padding: 20px; background: rgba(255, 255, 255, 0.9); border-radius: 10px; margin: 20px auto; max-width: 1200px;">
+            <h2 style="text-align: center; color: #333; margin-bottom: 30px; font-size: 2em;">Your Preferences</h2>
+            <div style="text-align: center;">
+                <button onclick="clearPreferences()" style="padding: 12px 24px; background-color: #f44336; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 1.1em; transition: background-color 0.3s ease;">Clear Preferences</button>
+            </div>
         </section>
     </main>
 
@@ -242,13 +331,70 @@
     </footer>
 
     <script>
-        // Event Handling Functions
         function validatePhone(input) {
             const phoneRegex = /^\d{10}$/;
             if (!phoneRegex.test(input.value)) {
                 alert('Please enter a valid 10-digit phone number');
                 input.focus();
             }
+        }
+
+        function validateForm(event) {
+            event.preventDefault();
+            const form = event.target;
+            let isValid = true;
+            let errorMessage = '';
+
+            // Name validation
+            const name = form.querySelector('#name');
+            if (!name.value.trim()) {
+                errorMessage += 'Name is required\n';
+                isValid = false;
+                name.style.borderColor = '#f44336';
+            } else {
+                name.style.borderColor = '#4CAF50';
+            }
+
+            // Email validation
+            const email = form.querySelector('#email');
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email.value)) {
+                errorMessage += 'Please enter a valid email address\n';
+                isValid = false;
+                email.style.borderColor = '#f44336';
+            } else {
+                email.style.borderColor = '#4CAF50';
+            }
+
+            // Phone validation
+            const phone = form.querySelector('#phone');
+            const phoneRegex = /^\d{10}$/;
+            if (!phoneRegex.test(phone.value)) {
+                errorMessage += 'Please enter a valid 10-digit phone number\n';
+                isValid = false;
+                phone.style.borderColor = '#f44336';
+            } else {
+                phone.style.borderColor = '#4CAF50';
+            }
+
+            // Event type validation
+            const eventType = form.querySelector('#eventType');
+            if (!eventType.value) {
+                errorMessage += 'Please select an event type\n';
+                isValid = false;
+                eventType.style.borderColor = '#f44336';
+            } else {
+                eventType.style.borderColor = '#4CAF50';
+            }
+
+            if (!isValid) {
+                alert(errorMessage);
+                return false;
+            }
+
+            // If valid, show confirmation
+            showConfirmation();
+            return true;
         }
 
         function updateFee(select) {
@@ -263,89 +409,99 @@
             const selectedFee = fees[select.value] || 'Select an event to see fee';
             alert(`Event Fee: ${selectedFee}`);
             
-            // Save to localStorage
             localStorage.setItem('preferredEvent', select.value);
         }
 
         function countCharacters(textarea) {
             const count = textarea.value.length;
-            document.getElementById('charCount').textContent = count;
-        }
-
-        function enlargeImage(img) {
-            img.style.width = img.style.width === '200%' ? '100%' : '200%';
-        }
-
-        function showConfirmation() {
-            document.getElementById('confirmation').textContent = 'Registration submitted successfully!';
-        }
-
-        // Updated Video Functions for YouTube iframe
-        function playVideo() {
-            const iframe = document.querySelector('iframe');
-            iframe.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
-        }
-
-        function pauseVideo() {
-            const iframe = document.querySelector('iframe');
-            iframe.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
-        }
-
-        function restartVideo() {
-            const iframe = document.querySelector('iframe');
-            iframe.contentWindow.postMessage('{"event":"command","func":"seekTo","args":[0,true]}', '*');
-            iframe.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
-        }
-
-        // Geolocation Functions
-        function findNearbyEvents() {
-            if (navigator.geolocation) {
-                const options = {
-                    enableHighAccuracy: true,
-                    timeout: 10000,
-                    maximumAge: 0
-                };
-                
-                document.getElementById('locationStatus').textContent = 'Getting your location...';
-                
-                navigator.geolocation.getCurrentPosition(
-                    (position) => {
-                        const { latitude, longitude } = position.coords;
-                        document.getElementById('locationStatus').textContent = 
-                            `Your location: ${latitude.toFixed(4)}, ${longitude.toFixed(4)}`;
-                        
-                        // Simulate finding nearby events (in a real app, this would be an API call)
-                        const nearbyEvents = findEventsNearLocation(latitude, longitude);
-                        displayNearbyEvents(nearbyEvents);
-                    },
-                    (error) => {
-                        let errorMessage = 'Error getting location: ';
-                        switch(error.code) {
-                            case error.PERMISSION_DENIED:
-                                errorMessage += 'Please allow location access to find nearby events.';
-                                break;
-                            case error.POSITION_UNAVAILABLE:
-                                errorMessage += 'Location information is unavailable.';
-                                break;
-                            case error.TIMEOUT:
-                                errorMessage += 'Location request timed out.';
-                                break;
-                            default:
-                                errorMessage += 'An unknown error occurred.';
-                        }
-                        document.getElementById('locationStatus').textContent = errorMessage;
-                    },
-                    options
-                );
+            const maxLength = 500;
+            const charCount = document.getElementById('charCount');
+            charCount.textContent = count;
+            
+            if (count > maxLength) {
+                charCount.style.color = '#f44336';
+                textarea.style.borderColor = '#f44336';
             } else {
-                document.getElementById('locationStatus').textContent = 
-                    'Geolocation is not supported by your browser';
+                charCount.style.color = '#666';
+                textarea.style.borderColor = '#ddd';
             }
         }
 
+        function enlargeImage(img) {
+            const isEnlarged = img.style.transform === 'scale(1.5)';
+            
+            if (isEnlarged) {
+                img.style.transform = 'scale(1)';
+                img.style.zIndex = '1';
+                img.style.boxShadow = '0 2px 5px rgba(0,0,0,0.2)';
+                img.style.cursor = 'pointer';
+            } else {
+                img.style.transform = 'scale(1.5)';
+                img.style.zIndex = '100';
+                img.style.boxShadow = '0 5px 15px rgba(0,0,0,0.3)';
+                img.style.cursor = 'zoom-out';
+            }
+        }
+
+        function showConfirmation() {
+            const confirmation = document.getElementById('confirmation');
+            confirmation.textContent = 'Registration submitted successfully!';
+            confirmation.style.color = '#4CAF50';
+            confirmation.style.padding = '10px';
+            confirmation.style.marginTop = '10px';
+            confirmation.style.backgroundColor = '#E8F5E9';
+            confirmation.style.borderRadius = '5px';
+        }
+
+        function findNearbyEvents() {
+            if (!navigator.geolocation) {
+                document.getElementById('locationStatus').textContent = 
+                    'Geolocation is not supported by your browser';
+                return;
+            }
+
+            const options = {
+                enableHighAccuracy: true,
+                timeout: 10000,
+                maximumAge: 0
+            };
+
+            document.getElementById('locationStatus').textContent = 'Getting your location...';
+            document.getElementById('locationStatus').style.color = '#666';
+
+            navigator.geolocation.getCurrentPosition(
+                (position) => {
+                    const { latitude, longitude } = position.coords;
+                    document.getElementById('locationStatus').textContent = 
+                        `Your location: ${latitude.toFixed(4)}, ${longitude.toFixed(4)}`;
+                    document.getElementById('locationStatus').style.color = '#4CAF50';
+                    
+                    const nearbyEvents = findEventsNearLocation(latitude, longitude);
+                    displayNearbyEvents(nearbyEvents);
+                },
+                (error) => {
+                    let errorMessage = 'Error getting location: ';
+                    switch(error.code) {
+                        case error.PERMISSION_DENIED:
+                            errorMessage += 'Please allow location access to find nearby events.';
+                            break;
+                        case error.POSITION_UNAVAILABLE:
+                            errorMessage += 'Location information is unavailable.';
+                            break;
+                        case error.TIMEOUT:
+                            errorMessage += 'Location request timed out.';
+                            break;
+                        default:
+                            errorMessage += 'An unknown error occurred.';
+                    }
+                    document.getElementById('locationStatus').textContent = errorMessage;
+                    document.getElementById('locationStatus').style.color = '#f44336';
+                },
+                options
+            );
+        }
+
         function findEventsNearLocation(lat, lng) {
-            // This is a simulation - in a real app, this would be an API call
-            // to get actual events near the coordinates
             return [
                 {
                     name: 'Community Festival',
@@ -373,30 +529,28 @@
             eventsList.innerHTML = '';
 
             if (events.length === 0) {
-                eventsList.innerHTML = '<p>No events found nearby.</p>';
+                eventsList.innerHTML = '<p style="text-align: center; color: #666;">No events found nearby.</p>';
                 return;
             }
 
             const eventsHTML = events.map(event => `
-                <div style="border: 1px solid #ddd; padding: 10px; margin-bottom: 10px;">
-                    <h4>${event.name}</h4>
-                    <p>Distance: ${event.distance}</p>
-                    <p>Date: ${event.date}</p>
-                    <p>Location: ${event.location}</p>
+                <div style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+                    <h4 style="color: #333; margin-bottom: 10px;">${event.name}</h4>
+                    <p style="color: #666; margin: 5px 0;"><strong>Distance:</strong> ${event.distance}</p>
+                    <p style="color: #666; margin: 5px 0;"><strong>Date:</strong> ${event.date}</p>
+                    <p style="color: #666; margin: 5px 0;"><strong>Location:</strong> ${event.location}</p>
                 </div>
             `).join('');
 
             eventsList.innerHTML = eventsHTML;
         }
 
-        // Local Storage Functions
         function clearPreferences() {
             localStorage.clear();
             sessionStorage.clear();
             alert('All preferences have been cleared');
         }
 
-        // Load saved preferences
         window.onload = function() {
             const savedEvent = localStorage.getItem('preferredEvent');
             if (savedEvent) {
@@ -404,20 +558,69 @@
             }
         };
 
-        // Form submission handler
-        function handleSubmit(event) {
-            event.preventDefault();
-            // Add your form submission logic here
-            return false;
+        let player;
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('youtubePlayer', {
+                events: {
+                    'onReady': onPlayerReady,
+                    'onStateChange': onPlayerStateChange,
+                    'onError': onPlayerError
+                }
+            });
         }
 
-        // Before unload warning
-        window.onbeforeunload = function(e) {
-            const form = document.getElementById('eventForm');
-            if (form && form.checkValidity()) {
-                return 'You have unsaved changes. Are you sure you want to leave?';
+        function onPlayerReady(event) {
+            document.getElementById('videoStatus').textContent = 'Video ready to play';
+            document.getElementById('videoStatus').style.color = '#4CAF50';
+        }
+
+        function onPlayerStateChange(event) {
+            const status = document.getElementById('videoStatus');
+            switch(event.data) {
+                case YT.PlayerState.PLAYING:
+                    status.textContent = 'Video is playing';
+                    status.style.color = '#4CAF50';
+                    break;
+                case YT.PlayerState.PAUSED:
+                    status.textContent = 'Video is paused';
+                    status.style.color = '#FFA500';
+                    break;
+                case YT.PlayerState.ENDED:
+                    status.textContent = 'Video ended';
+                    status.style.color = '#666';
+                    break;
             }
-        };
+        }
+
+        function onPlayerError(event) {
+            document.getElementById('videoStatus').textContent = 'Error playing video';
+            document.getElementById('videoStatus').style.color = '#f44336';
+        }
+
+        function playVideo() {
+            if (player && player.playVideo) {
+                player.playVideo();
+            }
+        }
+
+        function pauseVideo() {
+            if (player && player.pauseVideo) {
+                player.pauseVideo();
+            }
+        }
+
+        function restartVideo() {
+            if (player && player.seekTo) {
+                player.seekTo(0);
+                player.playVideo();
+            }
+        }
+
+        // Load YouTube API
+        var tag = document.createElement('script');
+        tag.src = "https://www.youtube.com/iframe_api";
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
     </script>
 </body>
 </html> 
