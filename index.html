@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Local Community Event Portal</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        nav {
+            background: #333;
+            padding: 10px;
+            margin: -20px -20px 20px -20px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-right: 15px;
+        }
+
+        #welcomeBanner {
+            background: #007bff;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            margin: -20px -20px 20px -20px;
+        }
+
+        .event-gallery {
+            width: 100%;
+            margin: 20px 0;
+        }
+
+        .event-gallery td {
+            padding: 10px;
+            text-align: center;
+        }
+
+        .event-gallery img {
+            max-width: 100%;
+            border: 1px solid #ddd;
+        }
+
+        .registration-form {
+            max-width: 500px;
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 5px;
+            border: 1px solid #ddd;
+        }
+
+        .video-container {
+            max-width: 600px;
+            margin: 20px auto;
+        }
+
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            margin: 20px -20px -20px -20px;
+        }
+
+        button {
+            padding: 5px 15px;
+            background: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Section -->
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#events">Events</a>
+        <a href="#contact">Contact</a>
+        <a href="help.html" target="_blank">Help</a>
+    </nav>
+
+    <!-- Welcome Banner Section -->
+    <div id="welcomeBanner">
+        <h1>Welcome to Our Community Portal</h1>
+        <p>Join us for exciting local events! <span style="color: red; font-weight: bold;">Special offer: First event free!</span></p>
+    </div>
+
+    <!-- Main Content Section -->
+    <main>
+        <!-- Events Section -->
+        <section id="events">
+            <h2>Upcoming Events</h2>
+            <table class="event-gallery">
+                <tr>
+                    <td>
+                        <img src="Module/Module 1/HTML 5/LocalCommunityEventPortal/image/music fest.jpg" alt="Music Fest" title="Music Fest" class="event-image" ondblclick="enlargeImage(this)">
+                        <p>Music Festival</p>
+                    </td>
+                    <td>
+                        <img src="Module/Module 1/HTML 5/LocalCommunityEventPortal/image/food fair.jpg" alt="Food Fair" title="Food Fair" class="event-image" ondblclick="enlargeImage(this)">
+                        <p>Food Fair</p>
+                    </td>
+                    <td>
+                        <img src="Module/Module 1/HTML 5/LocalCommunityEventPortal/image/art show.jpg" alt="Art Show" title="Art Show" class="event-image" ondblclick="enlargeImage(this)">
+                        <p>Art Show</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img src="Module/Module 1/HTML 5/LocalCommunityEventPortal/image/yoga day.jpg" alt="Yoga Day" title="Yoga Day" class="event-image" ondblclick="enlargeImage(this)">
+                        <p>Yoga Day</p>
+                    </td>
+                    <td>
+                        <img src="Module/Module 1/HTML 5/LocalCommunityEventPortal/image/culturla fest.jpg" alt="Cultural Fest" title="Cultural Fest" class="event-image" ondblclick="enlargeImage(this)">
+                        <p>Cultural Festival</p>
+                    </td>
+                    <td>
+                        <img src="Module/Module 1/HTML 5/LocalCommunityEventPortal/image/marathon.jpg" alt="Marathon" title="Marathon" class="event-image" ondblclick="enlargeImage(this)">
+                        <p>Marathon</p>
+                    </td>
+                </tr>
+            </table>
+        </section>
+
+        <!-- Registration Form Section -->
+        <section id="registration">
+            <h2>Event Registration</h2>
+            <form class="registration-form" id="eventForm" onsubmit="return handleSubmit(event)">
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" required autofocus placeholder="Enter your full name">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required placeholder="Enter your email">
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone:</label>
+                    <input type="tel" id="phone" name="phone" onblur="validatePhone(this)" placeholder="Enter your phone number">
+                </div>
+                <div class="form-group">
+                    <label for="date">Event Date:</label>
+                    <input type="date" id="date" name="date" required>
+                </div>
+                <div class="form-group">
+                    <label for="eventType">Event Type:</label>
+                    <select id="eventType" name="eventType" onchange="updateFee(this)" required>
+                        <option value="">Select an event</option>
+                        <option value="festival">Community Festival</option>
+                        <option value="art">Art Exhibition</option>
+                        <option value="food">Food Fair</option>
+                        <option value="music">Music Concert</option>
+                        <option value="sports">Sports Day</option>
+                        <option value="workshop">Skill Workshop</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message:</label>
+                    <textarea id="message" name="message" onkeyup="countCharacters(this)" placeholder="Any special requirements?"></textarea>
+                    <p>Character count: <span id="charCount">0</span></p>
+                </div>
+                <button type="submit" onclick="showConfirmation()">Register</button>
+                <output id="confirmation"></output>
+            </form>
+        </section>
+
+        <!-- Video Section -->
+        <section id="video">
+            <h2>Event Promo</h2>
+            <div class="video-container">
+                <iframe 
+                    width="100%" 
+                    height="400" 
+                    src="https://www.youtube.com/embed/jLRXicRdNCQ?enablejsapi=1" 
+                    title="Event Promo Video"
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen>
+                </iframe>
+                <p id="videoStatus"></p>
+                <div class="video-controls">
+                    <button onclick="playVideo()">Play</button>
+                    <button onclick="pauseVideo()">Pause</button>
+                    <button onclick="restartVideo()">Restart</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Geolocation Section -->
+        <section id="location">
+            <h2>Find Nearby Events</h2>
+            <button onclick="findNearbyEvents()">Find Nearby Events</button>
+            <p id="locationStatus"></p>
+            <div id="nearbyEvents" style="margin-top: 20px;">
+                <h3>Events Near You</h3>
+                <div id="eventsList"></div>
+            </div>
+        </section>
+
+        <!-- Preferences Section -->
+        <section id="preferences">
+            <h2>Your Preferences</h2>
+            <button onclick="clearPreferences()">Clear Preferences</button>
+        </section>
+    </main>
+
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy; 2024 Local Community Event Portal. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Event Handling Functions
+        function validatePhone(input) {
+            const phoneRegex = /^\d{10}$/;
+            if (!phoneRegex.test(input.value)) {
+                alert('Please enter a valid 10-digit phone number');
+                input.focus();
+            }
+        }
+
+        function updateFee(select) {
+            const fees = {
+                festival: '$20',
+                art: '$15',
+                food: '$25',
+                music: '$30',
+                sports: '$10',
+                workshop: '$35'
+            };
+            const selectedFee = fees[select.value] || 'Select an event to see fee';
+            alert(`Event Fee: ${selectedFee}`);
+            
+            // Save to localStorage
+            localStorage.setItem('preferredEvent', select.value);
+        }
+
+        function countCharacters(textarea) {
+            const count = textarea.value.length;
+            document.getElementById('charCount').textContent = count;
+        }
+
+        function enlargeImage(img) {
+            img.style.width = img.style.width === '200%' ? '100%' : '200%';
+        }
+
+        function showConfirmation() {
+            document.getElementById('confirmation').textContent = 'Registration submitted successfully!';
+        }
+
+        // Updated Video Functions for YouTube iframe
+        function playVideo() {
+            const iframe = document.querySelector('iframe');
+            iframe.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
+        }
+
+        function pauseVideo() {
+            const iframe = document.querySelector('iframe');
+            iframe.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+        }
+
+        function restartVideo() {
+            const iframe = document.querySelector('iframe');
+            iframe.contentWindow.postMessage('{"event":"command","func":"seekTo","args":[0,true]}', '*');
+            iframe.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
+        }
+
+        // Geolocation Functions
+        function findNearbyEvents() {
+            if (navigator.geolocation) {
+                const options = {
+                    enableHighAccuracy: true,
+                    timeout: 10000,
+                    maximumAge: 0
+                };
+                
+                document.getElementById('locationStatus').textContent = 'Getting your location...';
+                
+                navigator.geolocation.getCurrentPosition(
+                    (position) => {
+                        const { latitude, longitude } = position.coords;
+                        document.getElementById('locationStatus').textContent = 
+                            `Your location: ${latitude.toFixed(4)}, ${longitude.toFixed(4)}`;
+                        
+                        // Simulate finding nearby events (in a real app, this would be an API call)
+                        const nearbyEvents = findEventsNearLocation(latitude, longitude);
+                        displayNearbyEvents(nearbyEvents);
+                    },
+                    (error) => {
+                        let errorMessage = 'Error getting location: ';
+                        switch(error.code) {
+                            case error.PERMISSION_DENIED:
+                                errorMessage += 'Please allow location access to find nearby events.';
+                                break;
+                            case error.POSITION_UNAVAILABLE:
+                                errorMessage += 'Location information is unavailable.';
+                                break;
+                            case error.TIMEOUT:
+                                errorMessage += 'Location request timed out.';
+                                break;
+                            default:
+                                errorMessage += 'An unknown error occurred.';
+                        }
+                        document.getElementById('locationStatus').textContent = errorMessage;
+                    },
+                    options
+                );
+            } else {
+                document.getElementById('locationStatus').textContent = 
+                    'Geolocation is not supported by your browser';
+            }
+        }
+
+        function findEventsNearLocation(lat, lng) {
+            // This is a simulation - in a real app, this would be an API call
+            // to get actual events near the coordinates
+            return [
+                {
+                    name: 'Community Festival',
+                    distance: '0.5 miles',
+                    date: '2024-04-15',
+                    location: 'City Park'
+                },
+                {
+                    name: 'Art Exhibition',
+                    distance: '1.2 miles',
+                    date: '2024-04-20',
+                    location: 'Community Center'
+                },
+                {
+                    name: 'Food Fair',
+                    distance: '2.0 miles',
+                    date: '2024-04-25',
+                    location: 'Downtown Square'
+                }
+            ];
+        }
+
+        function displayNearbyEvents(events) {
+            const eventsList = document.getElementById('eventsList');
+            eventsList.innerHTML = '';
+
+            if (events.length === 0) {
+                eventsList.innerHTML = '<p>No events found nearby.</p>';
+                return;
+            }
+
+            const eventsHTML = events.map(event => `
+                <div style="border: 1px solid #ddd; padding: 10px; margin-bottom: 10px;">
+                    <h4>${event.name}</h4>
+                    <p>Distance: ${event.distance}</p>
+                    <p>Date: ${event.date}</p>
+                    <p>Location: ${event.location}</p>
+                </div>
+            `).join('');
+
+            eventsList.innerHTML = eventsHTML;
+        }
+
+        // Local Storage Functions
+        function clearPreferences() {
+            localStorage.clear();
+            sessionStorage.clear();
+            alert('All preferences have been cleared');
+        }
+
+        // Load saved preferences
+        window.onload = function() {
+            const savedEvent = localStorage.getItem('preferredEvent');
+            if (savedEvent) {
+                document.getElementById('eventType').value = savedEvent;
+            }
+        };
+
+        // Form submission handler
+        function handleSubmit(event) {
+            event.preventDefault();
+            // Add your form submission logic here
+            return false;
+        }
+
+        // Before unload warning
+        window.onbeforeunload = function(e) {
+            const form = document.getElementById('eventForm');
+            if (form && form.checkValidity()) {
+                return 'You have unsaved changes. Are you sure you want to leave?';
+            }
+        };
+    </script>
+</body>
+</html> 
