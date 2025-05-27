@@ -1,0 +1,363 @@
+ /* ===== CSS Reset and Base Styles ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ===== Typography and Base Styles ===== */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+
+body {
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f5f5f5;
+    background-image: url('../images/background.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+/* ===== Header and Navigation Styles ===== */
+header {
+    background: linear-gradient(to right, #1e3c72, #2a5298);
+    color: white;
+    padding: 1rem;
+    text-align: center;
+}
+
+nav {
+    background: #333;
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+nav a:hover {
+    background-color: #555;
+}
+
+nav a:active {
+    background-color: #777;
+}
+
+nav a:visited {
+    color: #ddd;
+}
+
+/* ===== Welcome Banner Styles ===== */
+#welcomeBanner {
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    color: white;
+    padding: 2rem;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+#welcomeBanner h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.highlight {
+    color: #ff6b6b;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+/* ===== Gallery Styles ===== */
+.gallery {
+    margin: 2rem;
+}
+
+.gallery table {
+    width: 100%;
+    border-collapse: collapse;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.gallery td {
+    padding: 1rem;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+.gallery img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border: 2px solid #7a0c0c;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+.gallery img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+/* ===== Form Styles ===== */
+.registration-form {
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: #333;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 0.8rem;
+    border: 2px solid #ddd;
+    border-radius: 4px;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #1e3c72;
+    box-shadow: 0 0 0 2px rgba(30,60,114,0.2);
+}
+
+/* ===== Video Section Styles ===== */
+.video-section {
+    max-width: 800px;
+    margin: 2rem auto;
+    text-align: center;
+}
+
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* ===== Location Section Styles ===== */
+.location-section {
+    text-align: center;
+    margin: 2rem;
+    padding: 2rem;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.location-section button {
+    padding: 0.8rem 1.5rem;
+    background: #1e3c72;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.location-section button:hover {
+    background: #2a5298;
+}
+
+/* ===== Events List Styles ===== */
+.events-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.event-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.event-card:hover {
+    transform: translateY(-5px);
+}
+
+/* ===== Modal Styles ===== */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 1000;
+}
+
+.modal img {
+    max-width: 90%;
+    max-height: 90vh;
+    margin: auto;
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 3px solid white;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+}
+
+/* ===== Footer Styles ===== */
+footer {
+    background: #333;
+    color: white;
+    text-align: center;
+    padding: 1.5rem;
+    margin-top: 2rem;
+}
+
+/* ===== Multi-column News Section ===== */
+.news-section {
+    column-count: 2;
+    column-gap: 30px;
+    column-rule: 1px solid #ddd;
+    padding: 2rem;
+    margin: 2rem 0;
+}
+
+/* ===== Responsive Design ===== */
+@media screen and (max-width: 768px) {
+    nav {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .gallery table {
+        display: block;
+        overflow-x: auto;
+    }
+
+    .news-section {
+        column-count: 1;
+    }
+
+    .events-list {
+        grid-template-columns: 1fr;
+    }
+
+    .registration-form {
+        margin: 1rem;
+        padding: 1rem;
+    }
+
+    #welcomeBanner h2 {
+        font-size: 2rem;
+    }
+}
+
+/* ===== Utility Classes ===== */
+.error {
+    color: #dc3545;
+    font-size: 0.9em;
+    margin-top: 0.3rem;
+}
+
+.success {
+    color: #28a745;
+    font-size: 0.9em;
+    margin-top: 0.3rem;
+}
+
+/* ===== Animation Keyframes ===== */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.fade-in {
+    animation: fadeIn 0.5s ease-in;
+}
+
+/* ===== CSS Variables ===== */
+:root {
+    --primary-color: #1e3c72;
+    --secondary-color: #2a5298;
+    --accent-color: #ff6b6b;
+    --text-color: #333;
+    --background-color: #f5f5f5;
+    --border-radius: 8px;
+    --box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    --transition-speed: 0.3s;
+}
+
+/* Feedback Form Styles */
+#feedback {
+    margin: 2rem auto;
+    max-width: 600px;
+    padding: 1.5rem;
+    background: #fff;
+    border: 1px solid #ddd;
+}
+
+#feedback h2 {
+    color: #333;
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+#feedback button[type="submit"] {
+    background: #1e3c72;
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+}
+
+#feedback button[type="submit"]:hover {
+    background: #2a5298;
+}
+
+#feedback textarea {
+    min-height: 120px;
+}
+
+#feedbackCharCount {
+    text-align: right;
+    color: #666;
+    font-size: 0.9em;
+} 

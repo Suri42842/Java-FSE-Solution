@@ -1,0 +1,36 @@
+{
+    "java.project.sourcePaths": [
+        "Module/Module 3/Java/com.utils/src",
+        "Module/Module 3/Java/com.greetings/src"
+    ],
+    "java.project.outputPath": "Module/Module 3/Java/mods",
+    "java.project.referencedLibraries": [],
+    "java.configuration.updateBuildConfiguration": "automatic",
+    "java.compile.nullAnalysis.mode": "automatic",
+    "java.project.importHint": false,
+    "java.project.importOnFirstTimeStartup": "automatic",
+    "java.configuration.runtimes": [
+        {
+            "name": "JavaSE-17",
+            "path": "C:\\Program Files\\Java\\jdk-17",
+            "default": true
+        }
+    ],
+    "sqltools.connections": [
+        {
+            "mysqlOptions": {
+                "authProtocol": "default",
+                "enableSsl": "Disabled"
+            },
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 3306,
+            "driver": "MySQL",
+            "name": "MySQL Local",
+            "database": "JavaFSE",
+            "username": "root",
+            "connectionTimeout": 30,
+            "askForPassword": true
+        }
+    ]
+} 

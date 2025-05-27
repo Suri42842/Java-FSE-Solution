@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blooming Delights - Flower Shop</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+        :root {
+            --primary-color: #28a745;
+            --secondary-color: #20c997;
+            --accent-color: #ff6b6b;
+            --text-color: #333;
+            --background-color: #f8f9fa;
+            --border-radius: 15px;
+            --box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            --transition-speed: 0.3s;
+            --gradient-primary: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            --gradient-secondary: linear-gradient(to right, #ff6b6b, #ff8e8e);
+        }
+
+        .hero-section {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1490750967868-88aa4486c946?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            color: white;
+        }
+        .flower-card {
+            transition: transform 0.3s;
+            margin-bottom: 20px;
+            border: 1px solid rgba(0,0,0,0.1);
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .flower-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+        }
+        .flower-card img {
+            height: 200px;
+            object-fit: cover;
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+        }
+        .category-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            border-radius: 20px;
+            padding: 5px 15px;
+        }
+        .price-tag {
+            font-size: 1.2rem;
+            color: #28a745;
+            font-weight: bold;
+        }
+        .custom-navbar {
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .footer {
+            background-color: #f8f9fa;
+            padding: 40px 0;
+        }
+        .sidebar {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .media-object {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            padding: 15px;
+            border-radius: 10px;
+            background: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .media-object img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-right: 15px;
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            color: white;
+        }
+        .text-transform {
+            text-transform: uppercase;
+        }
+        .display-utilities {
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        /* Enhanced Custom Styles */
+        .btn-success {
+            background: var(--gradient-primary);
+            border: none;
+            transition: all var(--transition-speed) ease;
+        }
+
+        .btn-success:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
+        }
+
+        .card {
+            border-radius: var(--border-radius);
+            transition: all var(--transition-speed) ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--box-shadow);
+        }
+
+        .navbar {
+            background: rgba(255, 255, 255, 0.95) !important;
+            backdrop-filter: blur(10px);
+        }
+
+        .form-control:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 0.25rem rgba(40, 167, 69, 0.25);
+        }
+
+        .accordion-button:not(.collapsed) {
+            background: var(--gradient-primary);
+            color: white;
+        }
+
+        .modal-content {
+            border-radius: var(--border-radius);
+            border: none;
+        }
+
+        .modal-header {
+            background: var(--gradient-primary);
+            color: white;
+            border-top-left-radius: var(--border-radius);
+            border-top-right-radius: var(--border-radius);
+        }
+
+        .btn-close {
+            filter: brightness(0) invert(1);
+        }
+
+        .social-links .btn {
+            transition: all var(--transition-speed) ease;
+        }
+
+        .social-links .btn:hover {
+            transform: translateY(-3px);
+            background: var(--gradient-primary);
+            color: white;
+        }
+
+        /* Animation Classes */
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Enhanced Form Styles */
+        .form-floating > .form-control:focus ~ label,
+        .form-floating > .form-control:not(:placeholder-shown) ~ label {
+            color: var(--primary-color);
+        }
+
+        /* Enhanced Card Styles */
+        .flower-card {
+            border: none;
+            background: white;
+            box-shadow: var(--box-shadow);
+        }
+
+        .flower-card .card-body {
+            padding: 1.5rem;
+        }
+
+        .price-tag {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        /* Enhanced Footer Styles */
+        .footer {
+            background: var(--background-color);
+            border-top: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .footer a {
+            color: var(--text-color);
+            transition: all var(--transition-speed) ease;
+        }
+
+        .footer a:hover {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light custom-navbar sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="bi bi-flower1 text-success"></i> Blooming Delights
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#products">Products</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#categories">Categories</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                </ul>
+                <form class="d-flex me-3">
+                    <input class="form-control me-2" type="search" placeholder="Search flowers...">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+                <a class="nav-link" href="#cart">
+                    <i class="bi bi-cart3"></i> Cart
+                    <span class="badge bg-success">0</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+        <div class="container text-center">
+            <h1 class="display-4">Welcome to Blooming Delights</h1>
+            <p class="lead">Bringing nature's beauty to your doorstep</p>
+            <a href="#products" class="btn btn-success btn-lg">Shop Now</a>
+        </div>
+    </section>
+
+    <!-- Two-Column Layout with Sidebar -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row">
+                <!-- Sidebar -->
+                <div class="col-md-3 order-md-2">
+                    <div class="sidebar">
+                        <h4 class="mb-4">Categories</h4>
+                        <div class="list-group">
+                            <a href="#" class="list-group-item list-group-item-action active">All Flowers</a>
+                            <a href="#" class="list-group-item list-group-item-action">Roses</a>
+                            <a href="#" class="list-group-item list-group-item-action">Tulips</a>
+                            <a href="#" class="list-group-item list-group-item-action">Orchids</a>
+                            <a href="#" class="list-group-item list-group-item-action">Succulents</a>
+                        </div>
+                        
+                        <h4 class="mt-4 mb-3">Price Range</h4>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="price1">
+                            <label class="form-check-label" for="price1">Under $20</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="price2">
+                            <label class="form-check-label" for="price2">$20 - $40</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="price3">
+                            <label class="form-check-label" for="price3">Over $40</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Main Content -->
+                <div class="col-md-9 order-md-1">
+                    <!-- Tabbed Navigation -->
+                    <ul class="nav nav-tabs mb-4" id="productTabs" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="featured-tab" data-bs-toggle="tab" data-bs-target="#featured" type="button" role="tab">Featured</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="new-tab" data-bs-toggle="tab" data-bs-target="#new" type="button" role="tab">New Arrivals</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="bestsellers-tab" data-bs-toggle="tab" data-bs-target="#bestsellers" type="button" role="tab">Best Sellers</button>
+                        </li>
+                    </ul>
+
+                    <!-- Tab Content -->
+                    <div class="tab-content" id="productTabsContent">
+                        <div class="tab-pane fade show active" id="featured" role="tabpanel">
+                            <div class="row g-4">
+                                <!-- Product Cards with Button Groups -->
+                                <div class="col-sm-6 col-lg-4">
+                                    <div class="card flower-card">
+                                        <span class="badge bg-danger category-badge">Best Seller</span>
+                                        <img src="https://images.unsplash.com/photo-1525310072745-f49212b5ac6d" class="card-img-top" alt="Rose">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Rose Bouquet</h5>
+                                            <p class="price-tag">$29.99</p>
+                                            <div class="btn-group w-100">
+                                                <button class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#productModal">
+                                                    <i class="bi bi-eye"></i> View
+                                                </button>
+                                                <button class="btn btn-success">
+                                                    <i class="bi bi-cart-plus"></i> Add to Cart
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Media Objects Section -->
+                    <div class="mt-5">
+                        <h3 class="mb-4">Customer Reviews</h3>
+                        <div class="media-object">
+                            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330" alt="Customer">
+                            <div>
+                                <h5>Sarah Johnson</h5>
+                                <p class="text-muted">Beautiful flowers, excellent service!</p>
+                                <div class="text-warning">
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Display Utilities Section -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-5">Our Services</h2>
+            <div class="row">
+                <div class="col-md-4 d-none d-md-block">
+                    <div class="display-utilities">
+                        <h4>Same Day Delivery</h4>
+                        <p>Available for orders placed before 2 PM</p>
+                    </div>
+                </div>
+                <div class="col-md-4 d-flex d-md-block">
+                    <div class="display-utilities">
+                        <h4>Custom Arrangements</h4>
+                        <p>Personalized bouquets for any occasion</p>
+                    </div>
+                </div>
+                <div class="col-md-4 d-none d-lg-block">
+                    <div class="display-utilities">
+                        <h4>Wedding Services</h4>
+                        <p>Complete floral arrangements for your special day</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gradient Background Section -->
+    <section class="py-5 gradient-bg">
+        <div class="container text-center">
+            <h2 class="text-transform">Special Offers</h2>
+            <p class="lead">Get 20% off on your first order</p>
+            <button class="btn btn-light btn-lg">Shop Now</button>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section id="categories" class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5">Our Categories</h2>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card h-100">
+                        <div class="card-body text-center">
+                            <i class="bi bi-flower1 display-1 text-success mb-3"></i>
+                            <h3 class="card-title">Fresh Flowers</h3>
+                            <p class="card-text">Beautiful seasonal blooms for every occasion</p>
+                            <a href="#" class="btn btn-outline-success">View Collection</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100">
+                        <div class="card-body text-center">
+                            <i class="bi bi-gift display-1 text-success mb-3"></i>
+                            <h3 class="card-title">Gift Sets</h3>
+                            <p class="card-text">Curated arrangements for special moments</p>
+                            <a href="#" class="btn btn-outline-success">View Collection</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100">
+                        <div class="card-body text-center">
+                            <i class="bi bi-tree display-1 text-success mb-3"></i>
+                            <h3 class="card-title">Indoor Plants</h3>
+                            <p class="card-text">Green companions for your living space</p>
+                            <a href="#" class="btn btn-outline-success">View Collection</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-5">Featured Products</h2>
+            <div class="row g-4">
+                <div class="col-sm-6 col-lg-3">
+                    <div class="card flower-card">
+                        <span class="badge bg-danger category-badge">Best Seller</span>
+                        <img src="https://images.unsplash.com/photo-1525310072745-f49212b5ac6d" class="card-img-top" alt="Rose">
+                        <div class="card-body">
+                            <h5 class="card-title">Rose Bouquet</h5>
+                            <p class="price-tag">$29.99</p>
+                            <button class="btn btn-success w-100" data-bs-toggle="modal" data-bs-target="#productModal">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-3">
+                    <div class="card flower-card">
+                        <span class="badge bg-success category-badge">New</span>
+                        <img src="https://images.unsplash.com/photo-1526047932273-341f2a7631f9" class="card-img-top" alt="Tulip">
+                        <div class="card-body">
+                            <h5 class="card-title">Tulip Collection</h5>
+                            <p class="price-tag">$24.99</p>
+                            <button class="btn btn-success w-100">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-3">
+                    <div class="card flower-card">
+                        <img src="https://images.unsplash.com/photo-1526047932273-341f2a7631f9" class="card-img-top" alt="Orchid">
+                        <div class="card-body">
+                            <h5 class="card-title">Orchid Plant</h5>
+                            <p class="price-tag">$34.99</p>
+                            <button class="btn btn-success w-100">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-3">
+                    <div class="card flower-card">
+                        <img src="https://images.unsplash.com/photo-1526047932273-341f2a7631f9" class="card-img-top" alt="Succulent">
+                        <div class="card-body">
+                            <h5 class="card-title">Succulent Set</h5>
+                            <p class="price-tag">$19.99</p>
+                            <button class="btn btn-success w-100">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Special Offers Section -->
+    <section class="py-5">
+        <div class="container">
+            <div class="alert alert-success" role="alert">
+                <h4 class="alert-heading">Special Offer!</h4>
+                <p>Get 20% off on your first order. Use code: <strong>WELCOME20</strong></p>
+                <hr>
+                <p class="mb-0">Offer valid until the end of this month.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-5">Contact Us</h2>
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <form class="needs-validation" novalidate>
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="name" placeholder="Your Name" required>
+                            <label for="name">Your Name</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="email" class="form-control" id="email" placeholder="Your Email" required>
+                            <label for="email">Your Email</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <textarea class="form-control" id="message" placeholder="Your Message" style="height: 100px" required></textarea>
+                            <label for="message">Your Message</label>
+                        </div>
+                        <button type="submit" class="btn btn-success w-100">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5">Frequently Asked Questions</h2>
+            <div class="accordion" id="faqAccordion">
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                            How do I place an order?
+                        </button>
+                    </h2>
+                    <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            Simply browse our collection, select your desired flowers, and click "Add to Cart". Follow the checkout process to complete your order.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                            What is your delivery policy?
+                        </button>
+                    </h2>
+                    <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            We offer same-day delivery for orders placed before 2 PM. Standard delivery takes 1-2 business days.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Modal -->
+    <div class="modal fade" id="productModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Rose Bouquet</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <img src="https://images.unsplash.com/photo-1525310072745-f49212b5ac6d" class="img-fluid mb-3" alt="Rose Bouquet">
+                    <h4>Rose Bouquet</h4>
+                    <p class="price-tag">$29.99</p>
+                    <p>A beautiful arrangement of fresh roses, perfect for any occasion.</p>
+                    <div class="mb-3">
+                        <label for="quantity" class="form-label">Quantity</label>
+                        <input type="number" class="form-control" id="quantity" value="1" min="1">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-success">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h5>Blooming Delights</h5>
+                    <p>Bringing nature's beauty to your doorstep since 2010.</p>
+                </div>
+                <div class="col-md-4">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#home" class="text-decoration-none text-dark">Home</a></li>
+                        <li><a href="#products" class="text-decoration-none text-dark">Products</a></li>
+                        <li><a href="#categories" class="text-decoration-none text-dark">Categories</a></li>
+                        <li><a href="#contact" class="text-decoration-none text-dark">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5>Connect With Us</h5>
+                    <div class="social-links">
+                        <button class="btn btn-outline-dark me-2"><i class="bi bi-facebook"></i></button>
+                        <button class="btn btn-outline-dark me-2"><i class="bi bi-instagram"></i></button>
+                        <button class="btn btn-outline-dark me-2"><i class="bi bi-twitter"></i></button>
+                        <button class="btn btn-outline-dark"><i class="bi bi-pinterest"></i></button>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="text-center">
+                <p class="mb-0">&copy; 2024 Blooming Delights. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Form validation
+        (function () {
+            'use strict'
+            var forms = document.querySelectorAll('.needs-validation')
+            Array.prototype.slice.call(forms).forEach(function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (!form.checkValidity()) {
+                        event.preventDefault()
+                        event.stopPropagation()
+                    }
+                    form.classList.add('was-validated')
+                }, false)
+            })
+        })()
+    </script>
+</body>
+</html> 

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta Information -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Local Community Event Portal - Your gateway to community events">
+    <meta name="keywords" content="community events, local events, event registration">
+    <meta name="author" content="Community Portal Team">
+    
+    <!-- Title -->
+    <title>Local Community Event Portal</title>
+
+    <!-- External CSS -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <h1>Local Community Event Portal</h1>
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#events">Events</a>
+        <a href="#register">Register</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
+    <!-- Welcome Banner -->
+    <section id="welcomeBanner">
+        <h2>Welcome to Our Community</h2>
+        <p>Join us in celebrating local events and building stronger community bonds</p>
+        <div id="eventInfo"></div>
+    </section>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Search and Filter Section -->
+        <section class="search-filter">
+            <input type="text" id="searchInput" placeholder="Search events...">
+            <select id="categoryFilter">
+                <option value="">All Categories</option>
+                <option value="Festival">Festival</option>
+                <option value="Art">Art</option>
+                <option value="Music">Music</option>
+                <option value="Food">Food</option>
+                <option value="Health">Health</option>
+            </select>
+        </section>
+
+        <!-- Events List Section -->
+        <section id="eventsList" class="events-grid">
+            <!-- Events will be dynamically added here -->
+        </section>
+
+        <!-- Registration Form -->
+        <section class="registration-form">
+            <h2>Event Registration</h2>
+            <form id="registrationForm">
+                <div class="form-group">
+                    <label for="name">Full Name:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="event">Select Event:</label>
+                    <select id="event" name="event" required>
+                        <option value="">Choose an event...</option>
+                        <!-- Options will be dynamically added -->
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="message">Additional Information:</label>
+                    <textarea id="message" name="message" rows="4"></textarea>
+                </div>
+                <button type="submit" id="registerBtn">Register</button>
+            </form>
+        </section>
+
+        <!-- Event Gallery -->
+        <section class="gallery">
+            <h2>Upcoming Events</h2>
+            <table>
+                <tr>
+                    <td>
+                        <img src="images/marathon.jpg" alt="Community Marathon">
+                        <p>Community Marathon</p>
+                    </td>
+                    <td>
+                        <img src="images/art show.jpg" alt="Art Show">
+                        <p>Art Show</p>
+                    </td>
+                    <td>
+                        <img src="images/culturla fest.jpg" alt="Cultural Festival">
+                        <p>Cultural Festival</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img src="images/yoga day.jpg" alt="Yoga Day">
+                        <p>Yoga Day</p>
+                    </td>
+                    <td>
+                        <img src="images/food fair.jpg" alt="Food Fair">
+                        <p>Food Fair</p>
+                    </td>
+                    <td>
+                        <img src="images/music fest.jpg" alt="Music Festival">
+                        <p>Music Festival</p>
+                    </td>
+                </tr>
+            </table>
+        </section>
+
+        <!-- Location Section -->
+        <section class="location-section">
+            <h2>Find Events Near You</h2>
+            <button onclick="getLocation()">Share Location</button>
+            <div id="locationOutput"></div>
+            <div class="nearby-events">
+                <h3>Events Near You</h3>
+                <div class="events-list" id="nearbyEventsList">
+                    <!-- Events will be populated by JavaScript -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Local Community Event Portal. All rights reserved.</p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>

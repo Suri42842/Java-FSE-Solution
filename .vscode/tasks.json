@@ -1,0 +1,28 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build Java Modules",
+            "type": "shell",
+            "command": "javac",
+            "args": [
+                "-d",
+                "Module/Module 3/Java/mods/com.utils",
+                "Module/Module 3/Java/com.utils/src/module-info.java",
+                "Module/Module 3/Java/com.utils/src/com/utils/StringUtils.java",
+                "&&",
+                "javac",
+                "--module-path",
+                "Module/Module 3/Java/mods",
+                "-d",
+                "Module/Module 3/Java/mods/com.greetings",
+                "Module/Module 3/Java/com.greetings/src/module-info.java",
+                "Module/Module 3/Java/com.greetings/src/com/greetings/Main.java"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+    ]
+} 

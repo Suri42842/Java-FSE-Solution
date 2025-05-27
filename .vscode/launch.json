@@ -1,0 +1,13 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Launch Java Module",
+            "request": "launch",
+            "mainClass": "com.greetings.Main",
+            "projectName": "Java-FSE-Solution",
+            "vmArgs": "--module-path ${workspaceFolder}/Module/Module 3/Java/mods -m com.greetings/com.greetings.Main"
+        }
+    ]
+} 

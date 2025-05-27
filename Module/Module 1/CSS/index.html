@@ -1,0 +1,1169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta Information -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Local Community Event Portal - Your gateway to community events">
+    <meta name="keywords" content="community events, local events, event registration">
+    <meta name="author" content="Community Portal Team">
+    
+    <!-- Title -->
+    <title>Local Community Event Portal</title>
+
+    <!-- Base Styles -->
+    <style>
+        /* ===== CSS Reset and Base Styles ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* ===== Typography and Base Styles ===== */
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+        :root {
+            --primary-color: #1e3c72;
+            --secondary-color: #2a5298;
+            --accent-color: #ff6b6b;
+            --text-color: #333;
+            --background-color: #f5f5f5;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            --transition-speed: 0.3s;
+            --gradient-primary: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            --gradient-secondary: linear-gradient(to right, #ff6b6b, #ff8e8e);
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--background-color);
+            background-image: url('../images/background.jpg');
+            background-size: cover;
+            background-attachment: fixed;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ===== Enhanced Header and Navigation Styles ===== */
+        header {
+            background: var(--gradient-primary);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(255,255,255,0.1) 25%, transparent 25%),
+                        linear-gradient(-45deg, rgba(255,255,255,0.1) 25%, transparent 25%);
+            background-size: 60px 60px;
+            opacity: 0.1;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: fadeInDown 1s ease-out;
+        }
+
+        nav {
+            background: rgba(51, 51, 51, 0.95);
+            padding: 1rem;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            transition: all var(--transition-speed) ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        nav a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-secondary);
+            transition: all var(--transition-speed) ease;
+            z-index: -1;
+        }
+
+        nav a:hover::before {
+            left: 0;
+        }
+
+        nav a:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        /* ===== Enhanced Welcome Banner Styles ===== */
+        #welcomeBanner {
+            background: var(--gradient-primary);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #welcomeBanner::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-secondary);
+        }
+
+        #welcomeBanner h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .highlight {
+            color: var(--accent-color);
+            font-weight: bold;
+            font-size: 1.2em;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+            position: relative;
+            display: inline-block;
+        }
+
+        .highlight::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--accent-color);
+            transform: scaleX(0);
+            transition: transform var(--transition-speed) ease;
+        }
+
+        .highlight:hover::after {
+            transform: scaleX(1);
+        }
+
+        /* ===== Enhanced Gallery Styles ===== */
+        .gallery {
+            margin: 3rem;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+
+        .gallery h2 {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--primary-color);
+            font-size: 2rem;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .gallery h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: var(--gradient-secondary);
+        }
+
+        .gallery table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 1rem;
+            box-shadow: var(--box-shadow);
+        }
+
+        .gallery td {
+            padding: 1rem;
+            text-align: center;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            transition: transform var(--transition-speed) ease;
+            background: white;
+        }
+
+        .gallery td:hover {
+            transform: translateY(-5px);
+        }
+
+        .gallery img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: var(--border-radius);
+            transition: all var(--transition-speed) ease;
+            cursor: pointer;
+        }
+
+        .gallery img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+
+        .gallery p {
+            margin-top: 1rem;
+            font-weight: 500;
+            color: var(--primary-color);
+        }
+
+        /* ===== Enhanced Form Styles ===== */
+        .registration-form {
+            max-width: 700px;
+            margin: 3rem auto;
+            padding: 2.5rem;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            backdrop-filter: blur(10px);
+        }
+
+        .registration-form h2 {
+            text-align: center;
+            color: var(--primary-color);
+            margin-bottom: 2rem;
+            font-size: 2rem;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .registration-form h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: var(--gradient-secondary);
+        }
+
+        .form-group {
+            margin-bottom: 1.8rem;
+            position: relative;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.8rem;
+            font-weight: 500;
+            color: var(--primary-color);
+            transition: all var(--transition-speed) ease;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #ddd;
+            border-radius: var(--border-radius);
+            transition: all var(--transition-speed) ease;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(30,60,114,0.1);
+            transform: translateY(-2px);
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: #999;
+            transition: all var(--transition-speed) ease;
+        }
+
+        .form-group input:focus::placeholder,
+        .form-group textarea:focus::placeholder {
+            opacity: 0;
+            transform: translateX(10px);
+        }
+
+        button[type="submit"],
+        button[type="button"] {
+            padding: 1rem 2rem;
+            background: var(--gradient-primary);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all var(--transition-speed) ease;
+            margin-right: 1rem;
+        }
+
+        button[type="submit"]:hover,
+        button[type="button"]:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        button[type="button"] {
+            background: var(--gradient-secondary);
+        }
+
+        /* ===== Enhanced Video Section Styles ===== */
+        .video-section {
+            max-width: 900px;
+            margin: 3rem auto;
+            text-align: center;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+
+        .video-section h2 {
+            color: var(--primary-color);
+            margin-bottom: 2rem;
+            font-size: 2rem;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .video-section h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: var(--gradient-secondary);
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            transition: transform var(--transition-speed) ease;
+        }
+
+        .video-container:hover {
+            transform: scale(1.02);
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* ===== Enhanced Location Section Styles ===== */
+        .location-section {
+            text-align: center;
+            margin: 3rem;
+            padding: 2.5rem;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+
+        .location-section h2 {
+            color: var(--primary-color);
+            margin-bottom: 2rem;
+            font-size: 2rem;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .location-section h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: var(--gradient-secondary);
+        }
+
+        .location-section button {
+            padding: 1rem 2rem;
+            background: var(--gradient-primary);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all var(--transition-speed) ease;
+        }
+
+        .location-section button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        /* ===== Enhanced Events List Styles ===== */
+        .events-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .event-card {
+            background: white;
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            transition: all var(--transition-speed) ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .event-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--gradient-secondary);
+            transform: scaleX(0);
+            transition: transform var(--transition-speed) ease;
+        }
+
+        .event-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .event-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .event-card h4 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .event-card p {
+            color: #666;
+            margin: 0.5rem 0;
+        }
+
+        /* ===== Enhanced Modal Styles ===== */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            opacity: 0;
+            transition: opacity var(--transition-speed) ease;
+        }
+
+        .modal.show {
+            opacity: 1;
+        }
+
+        .modal img {
+            max-width: 90%;
+            max-height: 90vh;
+            margin: auto;
+            display: block;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.9);
+            border: 3px solid white;
+            box-shadow: 0 0 30px rgba(0,0,0,0.5);
+            transition: transform var(--transition-speed) ease;
+        }
+
+        .modal.show img {
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        /* ===== Enhanced Footer Styles ===== */
+        footer {
+            background: var(--gradient-primary);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-secondary);
+        }
+
+        footer p {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ===== Enhanced Multi-column News Section ===== */
+        .news-section {
+            column-count: 2;
+            column-gap: 40px;
+            column-rule: 2px solid var(--primary-color);
+            padding: 2rem;
+            margin: 3rem 0;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+
+        /* ===== Enhanced Responsive Design ===== */
+        @media screen and (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+                padding: 1rem;
+            }
+
+            .gallery table {
+                display: block;
+                overflow-x: auto;
+            }
+
+            .news-section {
+                column-count: 1;
+                padding: 1rem;
+            }
+
+            .events-list {
+                grid-template-columns: 1fr;
+            }
+
+            .registration-form {
+                margin: 1rem;
+                padding: 1.5rem;
+            }
+
+            #welcomeBanner h2 {
+                font-size: 2rem;
+            }
+
+            .video-section,
+            .location-section {
+                margin: 1rem;
+                padding: 1.5rem;
+            }
+        }
+
+        /* ===== Enhanced Utility Classes ===== */
+        .error {
+            color: #dc3545;
+            font-size: 0.9em;
+            margin-top: 0.5rem;
+            padding: 0.5rem;
+            background: rgba(220, 53, 69, 0.1);
+            border-radius: var(--border-radius);
+            border-left: 3px solid #dc3545;
+            display: none; /* Hide by default */
+        }
+
+        .error.show {
+            display: block; /* Show only when has content */
+        }
+
+        .success {
+            color: #28a745;
+            font-size: 0.9em;
+            margin-top: 0.5rem;
+            padding: 0.5rem;
+            background: rgba(40, 167, 69, 0.1);
+            border-radius: var(--border-radius);
+            border-left: 3px solid #28a745;
+            display: none; /* Hide by default */
+        }
+
+        .success.show {
+            display: block; /* Show only when has content */
+        }
+
+        /* ===== Enhanced Animation Keyframes ===== */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        .fade-in-down {
+            animation: fadeInDown 0.5s ease-out;
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.5s ease-out;
+        }
+
+        /* ===== Loading Animation ===== */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* ===== Scrollbar Styling ===== */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-color);
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--secondary-color);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header id="top">
+        <h1>Local Community Event Portal</h1>
+    </header>
+
+    <!-- Navigation Section -->
+    <nav>
+        <a href="#top">Home</a>
+        <a href="#events">Events</a>
+        <a href="#contact">Contact</a>
+        <a href="help.html" target="_blank">Help</a>
+    </nav>
+
+    <!-- Welcome Banner Section -->
+    <div id="welcomeBanner">
+        <h2>Welcome to Our Community Portal</h2>
+        <p>Join us for exciting local events! <span class="highlight" style="color: #ff6b6b; font-weight: bold;">Special offer: First event free!</span></p>
+        <p>Discover <span class="highlight">amazing events</span> in your neighborhood</p>
+    </div>
+
+    <!-- Main Content Section -->
+    <main>
+        <!-- Image Gallery Section -->
+        <section id="events" class="gallery">
+            <h2>Community Events Gallery</h2>
+            <table>
+                <tr>
+                    <td>
+                        <img src="../HTML 5/LocalCommunityEventPortal/image/music fest.jpg" alt="Music Festival" title="Annual Music Festival" ondblclick="enlargeImage(this)">
+                        <p>Annual Music Festival</p>
+                    </td>
+                    <td>
+                        <img src="../HTML 5/LocalCommunityEventPortal/image/food fair.jpg" alt="Food Fair" title="Local Food Fair" ondblclick="enlargeImage(this)">
+                        <p>Local Food Fair</p>
+                    </td>
+                    <td>
+                        <img src="../HTML 5/LocalCommunityEventPortal/image/art show.jpg" alt="Art Show" title="Community Art Show" ondblclick="enlargeImage(this)">
+                        <p>Community Art Show</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img src="../HTML 5/LocalCommunityEventPortal/image/yoga day.jpg" alt="Yoga Day" title="Wellness Yoga Day" ondblclick="enlargeImage(this)">
+                        <p>Wellness Yoga Day</p>
+                    </td>
+                    <td>
+                        <img src="../HTML 5/LocalCommunityEventPortal/image/culturla fest.jpg" alt="Cultural Fest" title="Cultural Festival" ondblclick="enlargeImage(this)">
+                        <p>Cultural Festival</p>
+                    </td>
+                    <td>
+                        <img src="../HTML 5/LocalCommunityEventPortal/image/marathon.jpg" alt="Marathon" title="City Marathon" ondblclick="enlargeImage(this)">
+                        <p>City Marathon</p>
+                    </td>
+                </tr>
+            </table>
+        </section>
+
+        <!-- Registration Form Section -->
+        <section id="registration" class="registration-form">
+            <h2>Event Registration</h2>
+            <form onsubmit="return handleSubmit(event)">
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" required autofocus placeholder="Enter your full name">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required placeholder="Enter your email">
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone:</label>
+                    <input type="tel" id="phone" name="phone" onblur="validatePhone(this)" placeholder="Enter your phone number">
+                    <div id="phoneError" class="error"></div>
+                </div>
+                <div class="form-group">
+                    <label for="date">Event Date:</label>
+                    <input type="date" id="date" name="date" required>
+                </div>
+                <div class="form-group">
+                    <label for="eventType">Event Type:</label>
+                    <select id="eventType" name="eventType" required onchange="updateFee(this)">
+                        <option value="">Select an event</option>
+                        <option value="festival">Community Festival</option>
+                        <option value="art">Art Exhibition</option>
+                        <option value="food">Food Fair</option>
+                        <option value="music">Music Concert</option>
+                        <option value="sports">Sports Day</option>
+                        <option value="workshop">Skill Workshop</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message:</label>
+                    <textarea id="message" name="message" onkeyup="countCharacters(this)" placeholder="Any special requirements?"></textarea>
+                    <div id="charCount">0/500 characters</div>
+                </div>
+                <div class="form-group">
+                    <output id="feeOutput"></output>
+                </div>
+                <button type="submit" onclick="showConfirmation()">Register</button>
+                <button type="button" onclick="clearPreferences()">Clear Preferences</button>
+            </form>
+        </section>
+
+        <!-- Video Section -->
+        <section id="video" class="video-section">
+            <h2>Event Promo</h2>
+            <div class="video-container">
+                <iframe 
+                    width="100%" 
+                    height="315" 
+                    src="https://www.youtube.com/embed/iMAfIRaLl3k" 
+                    title="Event Promo Video" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen>
+                </iframe>
+            </div>
+            <div id="videoStatus"></div>
+        </section>
+
+        <!-- Location Section -->
+        <section id="location" class="location-section">
+            <h2>Find Nearby Events</h2>
+            <button onclick="findNearbyEvents()">Find Nearby Events</button>
+            <div id="locationOutput"></div>
+            <div id="nearbyEvents" class="nearby-events"></div>
+        </section>
+    </main>
+
+    <!-- Image Modal -->
+    <div id="imageModal" class="modal" onclick="closeModal()">
+        <img id="modalImage" src="" alt="Enlarged image">
+    </div>
+
+    <!-- Feedback Form Section -->
+    <section id="feedback" class="registration-form">
+        <h2>Event Feedback</h2>
+        <form onsubmit="return handleFeedbackSubmit(event)">
+            <div class="form-group">
+                <label for="feedbackName">Name:</label>
+                <input type="text" id="feedbackName" name="feedbackName" required placeholder="Enter your name">
+            </div>
+            <div class="form-group">
+                <label for="feedbackEmail">Email:</label>
+                <input type="email" id="feedbackEmail" name="feedbackEmail" required placeholder="Enter your email">
+            </div>
+            <div class="form-group">
+                <label for="eventAttended">Event Attended:</label>
+                <select id="eventAttended" name="eventAttended" required>
+                    <option value="">Select an event</option>
+                    <option value="music">Music Festival</option>
+                    <option value="art">Art Exhibition</option>
+                    <option value="food">Food Fair</option>
+                    <option value="yoga">Yoga Day</option>
+                    <option value="cultural">Cultural Festival</option>
+                    <option value="marathon">City Marathon</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="feedbackMessage">Your Feedback:</label>
+                <textarea id="feedbackMessage" name="feedbackMessage" onkeyup="countFeedbackCharacters(this)" placeholder="Share your experience and suggestions" required></textarea>
+                <div id="feedbackCharCount">0/500 characters</div>
+            </div>
+            <button type="submit">Submit Feedback</button>
+        </form>
+    </section>
+
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy; 2024 Local Community Event Portal. All rights reserved.</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Debug logging setup
+        const DEBUG = true;
+
+        function debugLog(message, data = null) {
+            if (DEBUG) {
+                if (data) {
+                    console.log(`[DEBUG] ${message}:`, data);
+                } else {
+                    console.log(`[DEBUG] ${message}`);
+                }
+            }
+        }
+
+        // Scroll to welcome banner on page load/reload
+        window.onload = function() {
+            debugLog('Page loaded, initializing...');
+            // Scroll to welcome banner
+            document.getElementById('welcomeBanner').scrollIntoView({ 
+                behavior: 'smooth',
+                block: 'start'
+            });
+            
+            const savedEventType = localStorage.getItem('preferredEventType');
+            debugLog('Saved event type:', savedEventType);
+            
+            if (savedEventType) {
+                document.getElementById('eventType').value = savedEventType;
+                updateFee({ value: savedEventType });
+                debugLog('Restored user preferences');
+            }
+        };
+
+        // Also handle page reload
+        window.onbeforeunload = function() {
+            document.getElementById('welcomeBanner').scrollIntoView({ 
+                behavior: 'smooth',
+                block: 'start'
+            });
+        };
+
+        // Form submission handler
+        function handleSubmit(event) {
+            debugLog('Form submission started');
+            event.preventDefault();
+            const formData = new FormData(event.target);
+            debugLog('Form data:', Object.fromEntries(formData));
+            
+            const output = document.getElementById('feeOutput');
+            output.textContent = `Registration successful! We'll contact you soon.`;
+            debugLog('Form submitted successfully');
+            return false;
+        }
+
+        // Phone validation
+        function validatePhone(input) {
+            debugLog('Validating phone number:', input.value);
+            const phoneRegex = /^\d{10}$/;
+            const errorDiv = document.getElementById('phoneError');
+            
+            if (!phoneRegex.test(input.value)) {
+                errorDiv.textContent = 'Please enter a valid 10-digit phone number';
+                errorDiv.classList.add('show');
+                debugLog('Phone validation failed');
+                return false;
+            }
+            errorDiv.textContent = '';
+            errorDiv.classList.remove('show');
+            debugLog('Phone validation successful');
+            return true;
+        }
+
+        // Update fee based on event type
+        function updateFee(select) {
+            debugLog('Updating fee for event type:', select.value);
+            const fees = {
+                'festival': '$25',
+                'art': '$15',
+                'food': '$20',
+                'music': '$30',
+                'sports': '$10',
+                'workshop': '$35'
+            };
+            const output = document.getElementById('feeOutput');
+            if (select.value) {
+                output.textContent = `Event Fee: ${fees[select.value]}`;
+                localStorage.setItem('preferredEventType', select.value);
+                debugLog('Fee updated and saved to localStorage');
+            } else {
+                output.textContent = '';
+                debugLog('Fee cleared');
+            }
+        }
+
+        // Character count for message
+        function countCharacters(textarea) {
+            const maxLength = 500;
+            const currentLength = textarea.value.length;
+            debugLog('Character count:', { current: currentLength, max: maxLength });
+            
+            const countDiv = document.getElementById('charCount');
+            countDiv.textContent = `${currentLength}/${maxLength} characters`;
+            if (currentLength > maxLength) {
+                textarea.value = textarea.value.substring(0, maxLength);
+                debugLog('Message truncated to max length');
+            }
+        }
+
+        // Image enlargement
+        function enlargeImage(img) {
+            debugLog('Enlarging image:', img.src);
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImage');
+            
+            modalImg.src = img.src;
+            modalImg.alt = img.alt;
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+            debugLog('Image enlarged successfully');
+        }
+
+        function closeModal() {
+            debugLog('Closing image modal');
+            const modal = document.getElementById('imageModal');
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Video ready handler
+        function videoReady() {
+            debugLog('Video ready to play');
+            document.getElementById('videoStatus').textContent = 'Video ready to play!';
+        }
+
+        // Form confirmation
+        function showConfirmation() {
+            debugLog('Showing form confirmation');
+            alert('Thank you for registering! We will contact you soon.');
+        }
+
+        // Clear preferences
+        function clearPreferences() {
+            debugLog('Clearing user preferences');
+            localStorage.clear();
+            sessionStorage.clear();
+            document.getElementById('eventType').value = '';
+            document.getElementById('feeOutput').textContent = '';
+            alert('Preferences cleared!');
+            debugLog('Preferences cleared successfully');
+        }
+
+        // Geolocation
+        function findNearbyEvents() {
+            debugLog('Finding nearby events');
+            const output = document.getElementById('locationOutput');
+            const nearbyEventsDiv = document.getElementById('nearbyEvents');
+            
+            if (!navigator.geolocation) {
+                output.textContent = 'Geolocation is not supported by your browser';
+                debugLog('Geolocation not supported');
+                return;
+            }
+
+            output.textContent = 'Finding your location...';
+            nearbyEventsDiv.innerHTML = '';
+
+            const options = {
+                enableHighAccuracy: true,
+                timeout: 5000,
+                maximumAge: 0
+            };
+
+            navigator.geolocation.getCurrentPosition(
+                function(position) {
+                    const lat = position.coords.latitude;
+                    const lon = position.coords.longitude;
+                    debugLog('Location found:', { latitude: lat, longitude: lon });
+                    
+                    output.textContent = `Your location: ${lat.toFixed(4)}, ${lon.toFixed(4)}`;
+                    
+                    // Sample nearby events
+                    const events = [
+                        {
+                            name: "Community Festival",
+                            distance: "0.5 km",
+                            date: "2024-04-15",
+                            location: "Central Park"
+                        },
+                        {
+                            name: "Art Exhibition",
+                            distance: "1.2 km",
+                            date: "2024-04-20",
+                            location: "City Gallery"
+                        },
+                        {
+                            name: "Food Fair",
+                            distance: "0.8 km",
+                            date: "2024-04-25",
+                            location: "Downtown Square"
+                        }
+                    ];
+
+                    debugLog('Displaying nearby events:', events);
+                    let eventsHTML = '<h3>Nearby Events</h3><div class="events-list">';
+                    events.forEach(event => {
+                        eventsHTML += `
+                            <div class="event-card">
+                                <h4>${event.name}</h4>
+                                <p>Distance: ${event.distance}</p>
+                                <p>Date: ${event.date}</p>
+                                <p>Location: ${event.location}</p>
+                            </div>
+                        `;
+                    });
+                    eventsHTML += '</div>';
+                    nearbyEventsDiv.innerHTML = eventsHTML;
+                },
+                function(error) {
+                    debugLog('Geolocation error:', error);
+                    switch(error.code) {
+                        case error.PERMISSION_DENIED:
+                            output.textContent = 'Please allow location access to find nearby events';
+                            break;
+                        case error.POSITION_UNAVAILABLE:
+                            output.textContent = 'Location information is unavailable';
+                            break;
+                        case error.TIMEOUT:
+                            output.textContent = 'Location request timed out';
+                            break;
+                        default:
+                            output.textContent = 'An unknown error occurred';
+                    }
+                },
+                options
+            );
+        }
+
+        // Feedback form functions
+        function handleFeedbackSubmit(event) {
+            event.preventDefault();
+            const formData = new FormData(event.target);
+            const feedbackData = Object.fromEntries(formData);
+            
+            // Store feedback in localStorage
+            const feedbacks = JSON.parse(localStorage.getItem('feedbacks') || '[]');
+            feedbacks.push({
+                ...feedbackData,
+                timestamp: new Date().toISOString()
+            });
+            localStorage.setItem('feedbacks', JSON.stringify(feedbacks));
+            
+            alert('Thank you for your feedback!');
+            event.target.reset();
+            return false;
+        }
+
+        function countFeedbackCharacters(textarea) {
+            const maxLength = 500;
+            const currentLength = textarea.value.length;
+            const countDiv = document.getElementById('feedbackCharCount');
+            countDiv.textContent = `${currentLength}/${maxLength} characters`;
+            
+            if (currentLength > maxLength) {
+                textarea.value = textarea.value.substring(0, maxLength);
+            }
+        }
+
+        // Initial debug log
+        debugLog('Portal initialized');
+        debugLog('Debug mode:', DEBUG);
+    </script>
+
+</body>
+</html>
